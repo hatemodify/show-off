@@ -10,6 +10,17 @@ const axios = require('axios')
 
 const app = express()
 
+const MongoClient = require('mongodb').MongoClient
+const uri =
+  'mongodb+srv://admin:asdasd@showoff-w62pe.gcp.mongodb.net/test?retryWrites=true&w=majority'
+const client = new MongoClient(uri, { useNewUrlParser: true })
+client.connect(err => {
+  const collection = client.db('test').collection('devices')
+  // perform actions on the collection object
+  console.log('db conneted')
+  client.close()
+})
+
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
@@ -21,6 +32,9 @@ app.use(
   })
 )
 app.use(cors())
+
+app.use('/showoff', require('./router/showoff'))
+app.use('/item', require('./router/item'))
 
 http.createServer(app).listen(9998, function () {
   console.log('Https server listening on port ' + 9998)

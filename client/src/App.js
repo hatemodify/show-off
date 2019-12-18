@@ -8,7 +8,7 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <>
-          <Header />;
+          <Header />
           <Switch>
             <Route exact path='/' component={Main} />
           </Switch>
