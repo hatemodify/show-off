@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './index.scss'
 import dummy from '../../dummy/index'
+import axios from 'axios'
 
 export default class ListShowOff extends React.Component {
   itemShowOff = ({ title, imgUrl, description, index }) => {
@@ -15,6 +16,12 @@ export default class ListShowOff extends React.Component {
         </div>
       </figure>
     )
+  }
+
+  componentDidMount () {
+    axios.get('/showoff/addshow').then(res => {
+      console.log(res)
+    })
   }
 
   render () {
