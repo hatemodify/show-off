@@ -1,0 +1,15 @@
+import { Component } from "@angular/core";
+import { arr } from "./constants";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
+})
+export class AppComponent {
+  title = "client-ng";
+  a = arr;
+  ngOnInit(): void {
+    console.log(arr);
+  }
+}

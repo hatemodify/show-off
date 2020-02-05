@@ -10,16 +10,21 @@ const axios = require('axios')
 
 const app = express()
 
-const MongoClient = require('mongodb').MongoClient
-const uri =
-  'mongodb+srv://admin:asdasd@showoff-w62pe.gcp.mongodb.net/test?retryWrites=true&w=majority'
-const client = new MongoClient(uri, { useNewUrlParser: true })
-client.connect(err => {
-  const collection = client.db('test').collection('devices')
-  // perform actions on the collection object
-  console.log('db conneted')
-  client.close()
+
+
+
+mongoose.connect(
+  'mongodb+srv://admin:asdasd12@showoff-w62pe.gcp.mongodb.net/test',
+  { useNewUrlParser: true }
+)
+const db = mongoose.connection
+
+db.on('error', console.error.bind(console, 'connection error'))
+
+db.once('open', callbak => {
+  console.log('db connection success')
 })
+
 
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))

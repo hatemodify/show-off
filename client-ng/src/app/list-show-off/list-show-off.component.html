@@ -1,0 +1,9 @@
+<ul class="list_showoff">
+  <li *ngFor="let item of list | keyvalue">
+    <strong class="tit_showoff">{{ item.value.title }}</strong>
+    <figure class="">
+      <img [src]="item.value.imgUrl" />
+    </figure>
+    <p class="dsec_showoff">{{ item.value.description }}</p>
+  </li>
+</ul>
