@@ -8,8 +8,5 @@ import { arr } from "./constants";
 })
 export class AppComponent {
   title = "client-ng";
-  a = arr;
-  ngOnInit(): void {
-    console.log(arr);
-  }
+  ngOnInit(): void {}
 }

@@ -1,9 +1,11 @@
 <ul class="list_showoff">
   <li *ngFor="let item of list | keyvalue">
-    <strong class="tit_showoff">{{ item.value.title }}</strong>
+    {{ date | date: "yyyy.MM-dd" }}
+    <strong class="tit_showoff">{{ item.value.title | ellipsis: 3 }}</strong>
     <figure class="">
       <img [src]="item.value.imgUrl" />
     </figure>
     <p class="dsec_showoff">{{ item.value.description }}</p>
   </li>
 </ul>
+<app-showoff></app-showoff>
