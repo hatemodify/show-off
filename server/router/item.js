@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const axios = require('axios')
 // const SHOW_OFF = require('../model/showoff')
+const path = require('path')
 
 router.post('/related', (req, res) => {
   console.log(req.body)
@@ -21,5 +22,6 @@ router.post('/related', (req, res) => {
     )
     .then(r => res.send(r.data.items))
 })
+
 
 module.exports = router

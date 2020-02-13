@@ -1,4 +1,5 @@
 export class test {
-  id: number;
   title: string;
+  imgUrl: string;
+  descrption: string;
 }

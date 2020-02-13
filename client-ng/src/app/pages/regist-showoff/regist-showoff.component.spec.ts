@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowoffComponent } from './showoff.component';
+import { RegistShowoffComponent } from './regist-showoff.component';
 
-describe('ShowoffComponent', () => {
-  let component: ShowoffComponent;
-  let fixture: ComponentFixture<ShowoffComponent>;
+describe('RegistShowoffComponent', () => {
+  let component: RegistShowoffComponent;
+  let fixture: ComponentFixture<RegistShowoffComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowoffComponent ]
+      declarations: [ RegistShowoffComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowoffComponent);
+    fixture = TestBed.createComponent(RegistShowoffComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

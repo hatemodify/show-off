@@ -1,19 +1,15 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ListShowOffComponent } from "./list-show-off/list-show-off.component";
-import { ShowoffComponent } from "./modules/showoff/showoff.component";
+
 import { EllipsisPipe } from "./pipes";
+import { RoutingModule } from "./routing.module";
+import { ShowOffComponent } from "./pages/show-off/show-off.component";
+import { RegistShowoffComponent } from './pages/regist-showoff/regist-showoff.component';
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListShowOffComponent,
-    EllipsisPipe,
-    ShowoffComponent
-  ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, EllipsisPipe, ShowOffComponent, RegistShowoffComponent],
+  imports: [BrowserModule, HttpClientModule, RoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
