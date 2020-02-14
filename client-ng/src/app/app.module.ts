@@ -6,9 +6,18 @@ import { AppComponent } from "./app.component";
 import { EllipsisPipe } from "./pipes";
 import { RoutingModule } from "./routing.module";
 import { ShowOffComponent } from "./pages/show-off/show-off.component";
-import { RegistShowoffComponent } from './pages/regist-showoff/regist-showoff.component';
+import { RegistShowoffComponent } from "./pages/regist-showoff/regist-showoff.component";
+import { DetailShowoffComponent } from "./pages/detail-showoff/detail-showoff.component";
+import { ThumbItemComponent } from "./components/detail/thumb-item/thumb-item.component";
 @NgModule({
-  declarations: [AppComponent, EllipsisPipe, ShowOffComponent, RegistShowoffComponent],
+  declarations: [
+    AppComponent,
+    EllipsisPipe,
+    ShowOffComponent,
+    RegistShowoffComponent,
+    DetailShowoffComponent,
+    ThumbItemComponent
+  ],
   imports: [BrowserModule, HttpClientModule, RoutingModule],
   providers: [],
   bootstrap: [AppComponent]
