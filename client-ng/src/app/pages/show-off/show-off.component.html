@@ -1,10 +1,12 @@
 <ul class="list_showoff">
   <li *ngFor="let item of showOffList | keyvalue">
-    {{ date | date: "yyyy.MM-dd" }}
-    <strong class="tit_showoff">{{ item.value.title | ellipsis: 3 }}</strong>
-    <figure class="">
-      <img [src]="item.value.imgUrl" />
-    </figure>
-    <p class="dsec_showoff">{{ item.value.description }}</p>
+    <a [routerLink]="['/detail', item.id]">
+      {{ date | date: "yyyy.MM-dd" }}
+      <strong class="tit_showoff">{{ item.value.title | ellipsis: 3 }}</strong>
+      <figure class="">
+        <img [src]="item.value.imgUrl" />
+      </figure>
+      <p class="dsec_showoff">{{ item.value.description }}</p>
+    </a>
   </li>
 </ul>
