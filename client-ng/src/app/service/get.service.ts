@@ -17,7 +17,10 @@ import { map } from "rxjs/operators";
 export class GetService {
   constructor(private http: HttpClient) {}
 
-  getApi(url: string): Observable<[]> {
+  getList(url: string): Observable<[]> {
     return this.http.get<[]>(url).pipe();
+  }
+  getDetail(id: string): Observable<any> {
+    return this.http.get<any>(id).pipe();
   }
 }

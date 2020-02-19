@@ -1,6 +1,6 @@
 <ul class="list_showoff">
   <li *ngFor="let item of showOffList | keyvalue">
-    <a [routerLink]="['/detail', item.id]">
+    <a [routerLink]="['/detail', item.value.id]">
       {{ date | date: "yyyy.MM-dd" }}
       <strong class="tit_showoff">{{ item.value.title | ellipsis: 3 }}</strong>
       <figure class="">

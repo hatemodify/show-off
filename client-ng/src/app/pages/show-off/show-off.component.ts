@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { GetService } from "../../service/get.service";
-
+import { getListApi } from "../../api";
 @Component({
   selector: "app-show-off",
   templateUrl: "./show-off.component.html",
@@ -8,8 +8,7 @@ import { GetService } from "../../service/get.service";
 })
 export class ShowOffComponent implements OnInit {
   date: Date = new Date();
-  url: string =
-    "https://my-json-server.typicode.com/hatemodify/testApi/showoff";
+  url: string = getListApi;
   showOffList: [];
 
   constructor(private getList: GetService) {}
@@ -18,6 +17,6 @@ export class ShowOffComponent implements OnInit {
     this.getShowOffList();
   }
   getShowOffList() {
-    this.getList.getApi(this.url).subscribe(item => (this.showOffList = item));
+    this.getList.getList(this.url).subscribe(item => (this.showOffList = item));
   }
 }
