@@ -20,7 +20,7 @@ export class GetService {
   getList(url: string): Observable<[]> {
     return this.http.get<[]>(url).pipe();
   }
-  getDetail(id: string): Observable<any> {
-    return this.http.get<any>(id).pipe();
+  getDetail(url: string): Observable<any> {
+    return this.http.get<any>(url).pipe();
   }
 }
