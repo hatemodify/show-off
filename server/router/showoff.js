@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const SHOW_OFF = require("../model/showoff");
 const ImgList = require("../image");
+const axios = require("axios");
 
 // router.get('/addShow', (req, res) => {
 //   const a = new SHOW_OFF({
@@ -52,9 +53,26 @@ router.get("/list", (req, res) => {
 router.get("/detail/:id", (req, res) => {
 	const _id = req.params.id;
 
-	SHOW_OFF.find({ _id }, (err, data) => {
+	SHOW_OFF.findOne({ _id }, (err, data) => {
 		res.send(data);
+		console.log(data);
 	});
+});
+router.get("/related/:name", (req, res) => {
+	const name = req.params.name;
+	axios
+		.get(
+			`https://openapi.naver.com/v1/search/shop.json?query=${encodeURIComponent(
+				name
+			)}&display=10&start=1&sort=sim`,
+			{
+				headers: {
+					"X-Naver-Client-Id": "WWTmwvzkeT_l1CVY2V5L",
+					"X-Naver-Client-Secret": "IK3vG8kYA3"
+				}
+			}
+		)
+		.then(response => res.send(response.data.items));
 });
 
 function randomNumber(num) {

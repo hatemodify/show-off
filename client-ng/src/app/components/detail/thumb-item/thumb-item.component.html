@@ -1,1 +1,10 @@
-
+<div class="thumb" id="thumbImg">
+  <img *ngIf="detail" [src]="detail.imageUrl" />
+  <span
+    class="ico_coordinates"
+    *ngFor="let coord of detail.coordinates"
+    [style.top]="coord.y + 'px'"
+    [style.left]="coord.x + 'px'"
+    (click)="getRelatedItems(coord.name)"
+  ></span>
+</div>

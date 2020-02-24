@@ -10,6 +10,7 @@ import { throwError } from "rxjs";
 
 import { fromEvent } from "rxjs";
 import { map } from "rxjs/operators";
+import { getRelatedApi } from "../api";
 
 @Injectable({
   providedIn: "root"
@@ -20,7 +21,10 @@ export class GetService {
   getList(url: string): Observable<[]> {
     return this.http.get<[]>(url).pipe();
   }
-  getDetail(url: string): Observable<any> {
+  getDetail(url: string): Observable<Object> {
     return this.http.get<any>(url).pipe();
+  }
+  getRelatedItem(name: string): Observable<[]> {
+    return this.http.get<[]>(getRelatedApi(name)).pipe();
   }
 }

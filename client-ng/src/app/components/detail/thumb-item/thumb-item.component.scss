@@ -1,0 +1,18 @@
+.ico_coordinates {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background: #f00;
+	&:after {
+		position: absolute;
+		top: -3px;
+		left: -3px;
+		width: 14px;
+		height: 14px;
+		border: 1px solid #f00;
+		border-radius: 14px;
+		content: '';
+		cursor: pointer;
+	}
+}

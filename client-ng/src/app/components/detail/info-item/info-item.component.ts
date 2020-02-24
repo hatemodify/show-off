@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-info-item',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-item.component.scss']
 })
 export class InfoItemComponent implements OnInit {
-
+  @Input() info : Object
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
