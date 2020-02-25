@@ -1,9 +1,36 @@
-<div class="add_component">
-  <input type="file" />
+<div class="regist_showoff">
+  <div class="upload_img">
+    <input
+      id="uploadImg"
+      class="screen-out "
+      type="file"
+      accept="image/*"
+      (change)="onFileChange(fileInput.files)"
+      #fileInput
+    />
+    <label class="lab-upload" for="uploadImg" *ngIf="!imgSrc"></label>
+    <div class="wrap-thumb" *ngIf="imgSrc" (click)="addItems($event)">
+      <img [src]="imgSrc" />
+      <span class="info-txt">Click to add item</span>
+      <div class="wrap-pointer" *ngIf="pointer.hasOwnProperty('x')">
+        <!-- <span
+          class="ico-pointer"
+          *ngFor="let coords of itemList"
+          [style.left]="pointer.x + 'px'"
+          [style.top]="pointer.y + 'px'"
+        ></span> -->
+        <span
+          class="ico-pointer"
+          [style.left]="pointer.x + 'px'"
+          [style.top]="pointer.y + 'px'"
+        ></span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap-info" (itemInfo)="regItem($event)">
+    <input type="text" class="tf-add" placeholder="title" />
+    <textarea class="tf-desc" placeholder="description"></textarea>
+    <input type="text" class="tf-add" placeholder="tag" />
+    <app-add-item [item]="pointer"></app-add-item>
+  </div>
 </div>
-<div class="wrap_thumb">
-  <img
-    src="https://i.pinimg.com/564x/df/04/99/df049987d2b6ca630f9adbacb71cf284.jpg"
-  />
-</div>
-<input type="text" placeholder="url" />
