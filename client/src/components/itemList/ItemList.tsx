@@ -20,7 +20,7 @@ interface Item {
 
 
 interface Items {
-    itemList: Item[]
+    itemList: Array<Item>
 }
 
 const ItemList = ({ itemList }: Items) => {

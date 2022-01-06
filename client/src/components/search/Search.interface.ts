@@ -1,12 +1,18 @@
-interface Item {
+export interface Item {
 	[key: string]: string;
 }
-
-export interface SearchInterface {
+export interface SearchItems {
 	display: number;
-	items: Item[];
+	items: any;
 	lastBuildDate: string;
 	start: number;
 	total: number;
-	keyword: string;
+}
+export type Keyword = string | number;
+export type PageNo = number;
+
+export interface SearchInterface {
+	searchItems: Item[];
+	keyword: Keyword;
+	pageNo: PageNo;
 }

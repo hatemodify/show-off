@@ -1,13 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { SearchInterface } from './Search.interface';
+import { stat } from 'fs/promises';
+import { appStore } from '../../store';
 
-const INITIAL_STATE = {
-	display: 0,
-	items: [],
-	lastBuildDate: '',
-	start: 0,
-	total: 0,
+import {
+	SearchInterface,
+	SearchItems,
+	Keyword,
+	PageNo,
+	Item,
+} from './Search.interface';
+
+const INITIAL_STATE: SearchInterface = {
+	searchItems: [],
 	keyword: '',
 	pageNo: 1,
 };
@@ -16,11 +21,13 @@ const URL = 'http://localhost:9998/showoff/related/';
 
 export const asyncFakeGetSiteList = createAsyncThunk(
 	'search/getItemList',
-	async (state) => {
-		console.log(state);
-		// const result = await axios.get(`${URL}${keyword}/${pageNo}`);
-		// return result.data.items;
-		// return response.data;
+	async (loadMore: boolean = false, { getState }) => {
+		const state: any = getState();
+		const {
+			search: { keyword, pageNo },
+		} = state;
+		const result = await axios.get(`${URL}${keyword}/${pageNo}`);
+		return result.data.items;
 	}
 );
 
@@ -31,44 +38,35 @@ export const searchSlice = createSlice({
 		render: (state) => {
 			console.log(state);
 		},
+		setKeyword: (state, action: PayloadAction<Keyword>) => {
+			state.keyword = action.payload;
+		},
+		setPageNo: (state, action: PayloadAction<PageNo>) => {
+			state.pageNo = action.payload;
+		},
+		setSearchItems: (state, action: PayloadAction<Array<Item>>) => {
+			state.searchItems = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(asyncFakeGetSiteList.pending, (state) => {
-				console.log(state);
+			.addCase(asyncFakeGetSiteList.pending, (state, action) => {
+				action.meta.arg
+					? (state.pageNo = state.pageNo + 10)
+					: (state.pageNo = 1);
 			})
 			.addCase(asyncFakeGetSiteList.fulfilled, (state, action) => {
-				console.log(action);
+				action.meta.arg
+					? (state.searchItems = [...state.searchItems, ...action.payload])
+					: (state.searchItems = action.payload);
 			});
 	},
 });
 
-// export const userLoginSlice = createSlice({
-// 	name: 'bridge',
-// 	initialState: INITIAL_STATE,
-// 	reducers: {
-// 		render: (state) => {
-// 			state.status = ASYNC_STATUS.IDLE;
-// 		},
-// 	},
-// 	extraReducers: (builder) => {
-// 		builder
-// 			.addCase(asyncFakeGetSiteList.pending, (state) => {
-// 				state.status = ASYNC_STATUS.PENDING;
-// 			})
-// 			.addCase(
-// 				asyncFakeGetSiteList.fulfilled,
-// 				(state, action: PayloadAction<T_SiteList>) => {
-// 					state.status = ASYNC_STATUS.IDLE;
-// 					state.siteList = action.payload;
-// 				}
-// 			);
-// 	},
-// });
+export const { render, setKeyword, setSearchItems, setPageNo } =
+	searchSlice.actions;
 
-export const { render } = searchSlice.actions;
-
-// export const selectStatus = (state) => state.bridge.status;
-// export const selectSiteList = (state) => state.bridge.siteList;
+export const seletSearchItems = (state: any) => state.search.searchItems;
+export const seletKeyword = (state: any) => state.search.keyword;
 
 export default searchSlice.reducer;

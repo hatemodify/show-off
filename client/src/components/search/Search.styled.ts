@@ -4,9 +4,10 @@ export const SearchWrap = styled.div`
 	display: flex;
 	width: 100%;
 	height: 100px;
-	border: 1px solid #e3e3e3;
 	justify-content: center;
 	align-items: center;
+
+	${(props) => (props.title ? 'border: 1px solid #e3e3e3;' : null)}
 `;
 
 export const InpSearch = styled.input`
