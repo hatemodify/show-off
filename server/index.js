@@ -10,19 +10,13 @@ const axios = require('axios');
 
 const app = express();
 
-const { MongoClient } = require('mongodb');
 const uri =
 	'mongodb+srv://admin:asdasd12@cluster0.cqy2u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const client = new MongoClient(uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
 
-client.connect((err) => {
-	const collection = client.db('show-off').collection('show-off');
-	// perform actions on the collection object
-	client.close();
-});
+mongoose
+	.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(() => console.log('Successfully connected to mongodb'))
+	.catch((e) => console.error(e));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
